@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 성장 대시보드</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      color: #1e3a8a;
+    }
+    .timeline {
+      background: linear-gradient(to right, #f87171, #60a5fa);
+      border-radius: 12px;
+      height: 40px;
+      position: relative;
+      margin: 2rem 0;
+    }
+    .progress {
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .label {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .goal {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+    }
+    .goal-title {
+      font-weight: bold;
+      color: #111827;
+    }
+    .goal-desc {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <h2>2025 성장 대시보드</h2>
+  <div class="timeline">
+    <div class="progress" id="marker">0%</div>
+  </div>
+  <div class="label" id="dateLabel">오늘은 2025년 XX월 XX일, 올해의 XX% 지점이에요.</div>
+
+  <div class="goal">
+    <div class="goal-title">1. MIDAC 석사 준비</div>
+    <div class="goal-desc">연구 주제 구상, 전공 탐색, 원서 준비 등. 지원을 위한 정보와 방향 설정 중.</div>
+  </div>
+  <div class="goal">
+    <div class="goal-title">2. 포트폴리오 구성</div>
+    <div class="goal-desc">실무 경험과 프로젝트 기록 정리, 포트폴리오로 자연스럽게 축적.</div>
+  </div>
+  <div class="goal">
+    <div class="goal-title">3. PAO/국제교육 사업 지원</div>
+    <div class="goal-desc">모잠비크 교육 프로젝트 등 실무형 지원 기회 탐색 및 자소서 구성.</div>
+  </div>
+  <div class="goal">
+    <div class="goal-title">4. 청소년지도사 2급 준비</div>
+    <div class="goal-desc">학점은행제 통해 과목 이수 예정, 2026 상반기 자격취득 목표.</div>
+  </div>
+  <div class="goal">
+    <div class="goal-title">5. 성장 기록화</div>
+    <div class="goal-desc">월 1회 블로그 혹은 노션을 통해 정리, 감정/성과 추적.</div>
+  </div>
+
+  <script>
+    function updateTimeline() {
+      const start = new Date('2025-01-01');
+      const end = new Date('2025-12-31');
+      const today = new Date();
+
+      const total = end - start;
+      const current = today - start;
+      let percent = Math.min(100, Math.floor((current / total) * 100));
+      if (percent < 0) percent = 0;
+
+      const marker = document.getElementById('marker');
+      marker.textContent = percent + '%';
+      marker.style.left = percent + '%';
+
+      const label = document.getElementById('dateLabel');
+      const todayStr = today.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+      label.textContent = `오늘은 ${todayStr}, 올해의 ${percent}% 지점이에요.`;
+    }
+
+    updateTimeline();
+  </script>
+</body>
+</html>
